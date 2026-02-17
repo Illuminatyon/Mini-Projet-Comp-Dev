@@ -1,42 +1,32 @@
+/* src/App.css */
+
+/*
+Ce code a été généré par une IA ; l'IA que j'ai utilisé est Gemini.
+ */
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  font-family: sans-serif;
   padding: 2rem;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  width: 100%; /* Important pour occuper tout l'écran */
+  box-sizing: border-box;
+}
+
+header h1 {
   text-align: center;
+  color: #2c3e50;
+  margin-bottom: 3rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+main {
+  width: 100%;
+  max-width: 1200px; /* On limite un peu pour que ce soit joli sur très grand écran */
+  margin: 0 auto;    /* Mais on centre ce bloc au milieu */
 }

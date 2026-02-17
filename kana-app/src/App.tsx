@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { kanaData } from './data/kana';
+import CharacterGrid from './components/CharacterGrid';
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const hiraganaList = kanaData.map(k => ({
+        char: k.hiragana,
+        rom: k.romanji
+    }));
+
+    const katakanaList = kanaData.map(k => ({
+        char: k.katakana,
+        rom: k.romanji
+    }));
+
+    return (
+        <div className="app-container">
+            <header>
+                <h1>Apprentissage du Japonais - Kana</h1>
+            </header>
+            <main>
+                <CharacterGrid
+                    title="Hiragana"
+                    characters={hiraganaList}
+                />
+                <hr style={{ margin: '3rem 0', border: 'none', borderTop: '1px solid #ccc' }} />
+                <CharacterGrid
+                    title="Katakana"
+                    characters={katakanaList}
+                />
+            </main>
+        </div>
+    );
 }
 
-export default App
+export default App;

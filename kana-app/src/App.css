@@ -1,0 +1,73 @@
+/* src/App.css */
+.app-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation principale (Étude / Quiz) */
+.main-nav {
+  display: inline-flex;
+  background: #bfc4cc;
+  padding: 0.5rem;
+  border-radius: 15px;
+  gap: 8px;
+}
+
+.main-nav button {
+  padding: 0.8rem 2rem;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  font-weight: 700;
+  color: #000000; /* Texte bien noir par défaut */
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.main-nav button.active {
+  background: #ffffff;
+  color: #6366f1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Sélecteur Hiragana / Katakana */
+.script-selector {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 2rem 0;
+}
+
+.script-selector button {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  padding: 0.6rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #000000; /* Texte noir */
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.script-selector button:disabled {
+  border-color: #6366f1;
+  color: #6366f1;
+  background: #f5f3ff;
+  cursor: default;
+}

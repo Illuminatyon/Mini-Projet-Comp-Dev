@@ -1,0 +1,27 @@
+/*
+Ce code a été généré par une IA ; je l'ai fait à l'aide de Gemini.
+ */
+
+.grid-section {
+    margin-bottom: 2rem;
+}
+
+.grid-section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

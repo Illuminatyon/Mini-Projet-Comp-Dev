@@ -1,0 +1,32 @@
+/* src/components/CharacterCard.css */
+
+/*
+Ce code a été généré par une IA ; je l'ai fait à l'aide de Gemini.
+ */
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* Flexbox pour bien centrer le contenu */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1; /* Pour garder les cartes carrées */
+}
+
+.card-symbol {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1a1a1a !important;
+    margin-bottom: 0.5rem;
+}
+
+.card-romanji {
+    font-size: 1rem;
+    color: #666;
+}

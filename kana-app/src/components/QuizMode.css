@@ -1,0 +1,89 @@
+/* src/components/QuizMode.css */
+.quiz-container {
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.score-board {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #475569;
+}
+
+.score-board span {
+    color: #6366f1;
+    font-size: 1.2rem;
+}
+
+.quiz-card {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    text-align: center;
+}
+
+.big-character {
+    font-size: 6rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: #1e293b;
+}
+
+.quiz-card input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+}
+
+.quiz-card input:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+.quiz-card button {
+    width: 100%;
+    padding: 1rem;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+}
+
+.quiz-card button:active {
+    transform: scale(0.98);
+}
+
+.feedback {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    animation: slideUp 0.3s ease-out;
+}
+
+.feedback.success {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.feedback.error {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

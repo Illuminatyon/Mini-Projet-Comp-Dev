@@ -1,40 +1,99 @@
-/* CharacterGrid.css */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem 0;
-}
-
-/* CharacterCard.css */
+/* ─────────────────────────────────────────────
+   CHARACTER CARD
+   ───────────────────────────────────────────── */
 .card {
-    background: white;
-    border-radius: 20px;
-    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: var(--radius);
+    padding: 1.4rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.02);
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    gap: 0.6rem;
+    transition:
+            transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+            background 0.25s ease;
+    border: 1px solid rgba(196, 191, 179, 0.4);
+    box-shadow: var(--shadow-soft);
+    cursor: none;
+    position: relative;
+    overflow: hidden;
+    animation: cardAppear 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Red corner accent */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--red);
+    transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: 0 0 2px 0;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    background: #fdfaf6;
 }
 
+.card:hover::before {
+    height: 100%;
+}
+
+/* Staggered animation for grid items */
+.card:nth-child(1)  { animation-delay: 0.02s; }
+.card:nth-child(2)  { animation-delay: 0.04s; }
+.card:nth-child(3)  { animation-delay: 0.06s; }
+.card:nth-child(4)  { animation-delay: 0.08s; }
+.card:nth-child(5)  { animation-delay: 0.10s; }
+.card:nth-child(6)  { animation-delay: 0.12s; }
+.card:nth-child(7)  { animation-delay: 0.14s; }
+.card:nth-child(8)  { animation-delay: 0.16s; }
+.card:nth-child(9)  { animation-delay: 0.18s; }
+.card:nth-child(10) { animation-delay: 0.20s; }
+
 .card-symbol {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--text-main);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+}
+
+.card:hover .card-symbol {
+    transform: scale(1.1);
+    color: var(--red);
 }
 
 .card-romanji {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-weight: 500;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    color: var(--mist);
+    font-weight: 400;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    transition: color 0.25s ease;
+}
+
+.card:hover .card-romanji {
+    color: var(--ink);
+}
+
+/* ─────────────────────────────────────────────
+   ANIMATION
+   ───────────────────────────────────────────── */
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }

@@ -1,28 +1,152 @@
-:root {
-  --primary: #6366f1;
-  --primary-light: #818cf8;
-  --bg-color: #f8fafc;
-  --card-bg: #ffffff;
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --success: #22c55e;
-  --error: #ef4444;
-  --radius: 20px;
-  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap');
 
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-main);
+/* ─────────────────────────────────────────────
+   CSS VARIABLES — Japanese ink palette
+   ───────────────────────────────────────────── */
+:root {
+  --ink:        #0d0d0f;
+  --ink-light:  #1c1c22;
+  --paper:      #f7f2ea;
+  --paper-warm: #ede6d6;
+  --red:        #c0392b;
+  --red-soft:   #e74c3c22;
+  --gold:       #c9a84c;
+  --gold-light: #e8d5a3;
+  --mist:       #8b8577;
+  --mist-light: #c4bfb3;
+  --success:    #27ae60;
+  --error:      #c0392b;
+
+  --radius-sm:  8px;
+  --radius:     16px;
+  --radius-lg:  28px;
+
+  --shadow-soft: 0 2px 20px rgba(13,13,15,0.06), 0 1px 4px rgba(13,13,15,0.04);
+  --shadow-card: 0 8px 32px rgba(13,13,15,0.08), 0 2px 8px rgba(13,13,15,0.04);
+  --shadow-hover: 0 16px 48px rgba(13,13,15,0.12), 0 4px 12px rgba(13,13,15,0.06);
+
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+/* ─────────────────────────────────────────────
+   RESET & BASE
+   ───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
+  min-height: 100vh;
+  min-width: 320px;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: var(--paper);
+  /* subtle washi paper texture */
+  background-image:
+          radial-gradient(ellipse at 20% 10%, rgba(192,57,43,0.04) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 90%, rgba(201,168,76,0.06) 0%, transparent 50%);
+  cursor: none;
 }
 
 #root {
   width: 100%;
+}
+
+/* ─────────────────────────────────────────────
+   CUSTOM CURSOR
+   ───────────────────────────────────────────── */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--red);
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--red);
+  opacity: 0.5;
+  transition: transform 0.18s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+}
+
+body:has(button:hover) .cursor-ring,
+body:has(input:hover) .cursor-ring,
+body:has(a:hover) .cursor-ring {
+  width: 48px;
+  height: 48px;
+  opacity: 0.3;
+  border-color: var(--gold);
+}
+
+body:has(button:hover) .cursor-dot {
+  background: var(--gold);
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* ─────────────────────────────────────────────
+   DECORATIVE JAPANESE ELEMENTS
+   ───────────────────────────────────────────── */
+.kamon-seal {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--red);
+  border-radius: 50%;
+  position: relative;
+  opacity: 0.25;
+}
+
+.kamon-seal::before {
+  content: '家';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 18px;
+  color: var(--red);
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR
+   ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--mist-light);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--red);
+}
+
+/* ─────────────────────────────────────────────
+   SELECTION
+   ───────────────────────────────────────────── */
+::selection {
+  background: rgba(192,57,43,0.15);
+  color: var(--ink);
 }

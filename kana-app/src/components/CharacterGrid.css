@@ -1,27 +1,40 @@
-/*
-Ce code a été généré par une IA ; je l'ai fait à l'aide de Gemini.
- */
-
-.grid-section {
-    margin-bottom: 2rem;
-}
-
-.grid-section h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #333;
-}
-
+/* CharacterGrid.css */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-    max-width: 800px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
 }
 
-@media (max-width: 600px) {
-    .grid-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
+/* CharacterCard.css */
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.02);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.card-symbol {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.card-romanji {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }

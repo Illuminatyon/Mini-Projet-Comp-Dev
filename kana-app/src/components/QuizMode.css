@@ -46,6 +46,157 @@
 }
 
 /* ─────────────────────────────────────────────
+   PANNEAU DE CONFIGURATION
+   ───────────────────────────────────────────── */
+.quiz-settings {
+    margin-bottom: 1.2rem;
+}
+
+.settings-toggle {
+    background: transparent;
+    border: 1px solid var(--mist-light);
+    color: var(--mist);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-sm);
+    cursor: none;
+    transition: all 0.2s ease;
+    width: 100%;
+    text-align: left;
+}
+
+.settings-toggle:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+}
+
+.settings-panel {
+    margin-top: 0.75rem;
+    background: #ffffff;
+    border: 1px solid rgba(196, 191, 179, 0.4);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    box-shadow: var(--shadow-soft);
+    animation: fadeUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.settings-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mist);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-all-btn {
+    background: transparent;
+    border: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    color: var(--red);
+    cursor: none;
+    letter-spacing: 0.05em;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+}
+
+.toggle-all-btn:hover {
+    opacity: 0.7;
+}
+
+/* ─────────────────────────────────────────────
+   TOGGLE MODE (normal / inverse)
+   ───────────────────────────────────────────── */
+.mode-toggle {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.mode-toggle button {
+    flex: 1;
+    padding: 0.6rem 0.5rem;
+    border: 1px solid var(--mist-light);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.92rem;
+    color: var(--mist);
+    cursor: none;
+    transition: all 0.2s ease;
+    letter-spacing: 0.04em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.mode-toggle button small {
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+.mode-toggle button.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+
+.mode-toggle button.active small {
+    opacity: 0.6;
+}
+
+/* ─────────────────────────────────────────────
+   SÉLECTEUR DE LIGNES
+   ───────────────────────────────────────────── */
+.row-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.row-btn {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--mist-light);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    color: var(--mist);
+    cursor: none;
+    transition: all 0.2s ease;
+    line-height: 1.4;
+}
+
+.row-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+}
+
+.row-btn.active {
+    background: rgba(192, 57, 43, 0.08);
+    border-color: var(--red);
+    color: var(--red);
+}
+
+/* ─────────────────────────────────────────────
    QUIZ CARD
    ───────────────────────────────────────────── */
 .quiz-card {
@@ -95,6 +246,74 @@
     animation: kanaPulse 4s ease-in-out infinite;
     position: relative;
     z-index: 1;
+}
+
+/* Mode inverse : affichage du rōmaji à la place du kana */
+.display-romanji {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 4.5rem !important;
+    font-style: italic;
+    letter-spacing: 0.04em;
+}
+
+.quiz-mode-hint {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: var(--mist);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.25rem;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+/* ─────────────────────────────────────────────
+   CHOIX MULTIPLES (mode inverse)
+   ───────────────────────────────────────────── */
+.choices-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 1;
+}
+
+.choice-btn {
+    padding: 1.3rem;
+    background: var(--paper);
+    border: 1.5px solid var(--paper-warm);
+    border-radius: var(--radius-sm);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.2rem;
+    color: var(--ink);
+    cursor: none;
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    line-height: 1;
+}
+
+.choice-btn:hover:not(:disabled) {
+    background: var(--paper-warm);
+    border-color: var(--ink);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+}
+
+.choice-btn.correct {
+    background: rgba(39, 174, 96, 0.1);
+    border-color: var(--success);
+    color: var(--success);
+    animation: feedbackPop 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.choice-btn.wrong {
+    background: rgba(192, 57, 43, 0.08);
+    border-color: var(--error);
+    color: var(--error);
+    animation: shake 0.4s ease both;
+}
+
+.choice-btn:disabled {
+    opacity: 0.6;
 }
 
 /* ─────────────────────────────────────────────
@@ -214,7 +433,7 @@
 }
 
 /* ─────────────────────────────────────────────
-   SUMMARY SCREEN (écran de fin)
+   SUMMARY SCREEN
    ───────────────────────────────────────────── */
 .summary-title {
     font-family: 'Cormorant Garamond', serif;
@@ -236,7 +455,6 @@
     margin-top: 0.3rem;
 }
 
-/* Stats grid */
 .summary-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -273,7 +491,6 @@
     color: var(--red);
 }
 
-/* Wrong answers */
 .wrong-answers {
     text-align: left;
     margin-bottom: 1.8rem;
@@ -305,7 +522,6 @@
     font-size: 0.82rem;
 }
 
-/* Session history */
 .session-history {
     border-top: 1px solid var(--paper-warm);
     padding-top: 1.2rem;
@@ -341,7 +557,6 @@
     font-size: 0.78rem;
     font-weight: 600;
     color: var(--ink);
-    transition: background 0.2s ease;
 }
 
 .history-dot:first-child {

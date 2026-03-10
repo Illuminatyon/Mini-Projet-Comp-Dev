@@ -1,40 +1,61 @@
-/* CharacterGrid.css */
+/* ─────────────────────────────────────────────
+   CHARACTER GRID
+   ───────────────────────────────────────────── */
+.grid-section {
+    margin-bottom: 3.5rem;
+    animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.grid-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Decorative line next to section title */
+.grid-section h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--mist-light), transparent);
+}
+
+/* Red dot accent before title */
+.grid-section h2::before {
+    content: '•';
+    color: var(--red);
+    font-size: 0.7rem;
+}
+
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem 0;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 1rem;
+    padding: 0.5rem 0;
 }
 
-/* CharacterCard.css */
-.card {
-    background: white;
-    border-radius: 20px;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.02);
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
-}
-
-.card-symbol {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-.card-romanji {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-weight: 500;
+/* ─────────────────────────────────────────────
+   ROW GROUPING (optional, if rows are used)
+   ───────────────────────────────────────────── */
+.grid-row-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--mist-light);
+    padding: 0.5rem 0 0.2rem;
+    border-top: 1px solid var(--paper-warm);
+    margin-top: 0.5rem;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
 }

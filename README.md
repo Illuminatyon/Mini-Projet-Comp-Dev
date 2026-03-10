@@ -1,58 +1,66 @@
-﻿# 🏯  Site interactif pour apprendre les caractères Japonais
+# 🏯 Site interactif d'apprentissage du Japonais
 
-Une application web interactive et moderne conçue avec **React** et **TypeScript** pour maîtriser les deux alphabets syllabaires japonais : les **Hiragana** et les **Katakana**.
+Une application web moderne conçue avec **React** et **TypeScript** pour maîtriser les syllabaires **Hiragana** et **Katakana**. Ce projet met en pratique les hooks avancés et les principes d'architecture modulaire.
 
-## 🚀 Fonctionnalités
+## 🚀 Fonctionnalités Avancées (Séance 5)
 
-### 📖 Mode Étude (Séance 2)
-* **Grilles complètes** : Visualisation de tous les caractères suivant l'ordre traditionnel *gojūon*.
-* **Cartes de caractères** : Affichage clair du caractère japonais et de sa romanisation (rōmaji).
-* **Design Responsive** : Une grille qui s'adapte automatiquement à la taille de l'écran.
+* **🧠 Logique métier isolée** : Utilisation du hook personnalisé `useQuiz` pour séparer la logique du jeu (calculs, timer, feedback) du rendu visuel.
+* **💾 Persistance des données** : Implémentation de `useLocalStorage` pour sauvegarder le **meilleur score (High Score)** de manière persistante dans le navigateur.
+* **⚡ Optimisation** : Usage de `useMemo` pour garantir que le mélange (shuffle) des caractères ne se recalcule pas inutilement à chaque rendu.
+* **🖱️ UX Ergonomique** : Focus automatique du champ de saisie via `useRef` à chaque nouvelle question pour une expérience fluide.
+* **🎨 Soft UI & Animations** : Interface épurée avec feedbacks visuels animés (effet de secousse sur erreur, pop-in sur succès).
 
-### ✍️ Mode Quiz (Séance 3)
-* **Apprentissage interactif** : Testez vos connaissances sur un script spécifique (Hiragana ou Katakana).
-* **Validation en temps réel** : Système de feedback visuel (succès/échec) après chaque réponse.
-* **Gestion du score** : Suivez votre progression avec un compteur de bonnes réponses.
-* **Navigation fluide** : Basculez facilement entre le mode étude et le mode quiz.
+## 📖 Modes d'Apprentissage
+
+### Mode Étude (Séance 2)
+* **Grilles traditionnelles** : Visualisation complète des 46 kanas suivant l'ordre *gojūon*.
+* **Cartes interactives** : Design responsive avec effets de survol et typographie claire.
+
+### Mode Quiz (Séance 3 & 4)
+* **Test adaptatif** : Questions générées aléatoirement sur le script sélectionné.
+* **Validation en temps réel** : Correction instantanée avec affichage de la réponse attendue en cas d'erreur.
+* **Conservation d'état** : Grâce au "Lifting State Up" dans `App.tsx`, votre progression (score et index) est maintenue même si vous changez d'onglet.
 
 ## 🛠️ Stack Technique
 
 * **Framework** : React 18 (Vite)
-* **Langage** : TypeScript
-* **Style** : CSS3 (Flexbox & Grid) avec esthétique "Soft UI"
+* **Langage** : TypeScript (Interfaces strictes pour les données Kana)
+* **Hooks** : `useState`, `useEffect`, `useRef`, `useMemo`, `useQuiz` (custom), `useLocalStorage` (custom)
+* **Style** : CSS3 (Variables natives, Flexbox, Grid, Animations Keyframes)
+* **Déploiement** : Vercel
 
-## 📂 Structure du Projet
+## 📂 Architecture du Projet
 
 ```text
 src/
-├── components/
-│   ├── CharacterCard.tsx    # Carte individuelle (symbole + romaji)
-│   ├── CharacterGrid.tsx    # Grille de cartes mappée sur les données
-│   ├── StudyMode.tsx        # Vue globale du mode apprentissage
-│   └── QuizMode.tsx         # Logique et interface du quiz interactif
+├── components/          # Composants de présentation (JSX + CSS)
+│   ├── CharacterCard    # Carte d'étude individuelle
+│   ├── CharacterGrid    # Grille de rendu
+│   ├── StudyMode        # Page de révision
+│   └── QuizMode         # Page de test interactif
+├── hooks/               # Logique métier extraite (Hooks personnalisés)
+│   ├── useQuiz.ts       # Moteur du quiz (score, index, logique)
+│   └── useLocalStorage.ts # Gestion de la persistance
 ├── data/
-│   └── kana.ts              # Base de données des 46 kanas
-├── App.tsx                  # Gestionnaire d'état principal (Mode & Script)
-├── App.css                  # Styles principaux et navigation
-└── index.css                # Reset des styles globaux
+│   └── kana.ts          # Base de données des 46 kanas
+├── App.tsx              # Gestionnaire d'état global (Navigation & Quiz state)
+└── index.css            # Thème global et variables CSS
 ```
 ## ⚙️ Installation et Lancement
 
 1. **Cloner le dépôt**
    ```bash
-   git clone https://github.com/Illuminatyon/Mini-Projet-Comp-Dev.git
-   cd kana-app
-    ```
-
+   git clone [https://github.com/Illuminatyon/Mini-Projet-Comp-Dev.git](https://github.com/Illuminatyon/Mini-Projet-Comp-Dev.git)
+   cd Mini-Projet-Comp-Dev
+   ```
+   
 2. **Installer les dépendances**
-   ```bash
-   npm install
-   ```
-   
-3. **Lancer l'application**
-   ```bash
-   npm run dev
-   ```
-   
-
-Réalisé dans le cadre du cours de Développement Web de Thomas Louvet.
+    ```bash
+    npm install
+    Lancer l'application en local
+    ```
+    ```Bash
+    npm run dev
+    ```
+    
+Réalisé dans le cadre du BUT Informatique Cours : Développement Web - Thomas Louvet

@@ -50,17 +50,18 @@ src/
 
 1. **Cloner le dépôt**
    ```bash
-   git clone [https://github.com/Illuminatyon/Mini-Projet-Comp-Dev.git](https://github.com/Illuminatyon/Mini-Projet-Comp-Dev.git)
-   cd Mini-Projet-Comp-Dev
+   git clone https://github.com/Illuminatyon/Mini-Projet-Comp-Dev
+   cd kana-app
    ```
    
 2. **Installer les dépendances**
     ```bash
     npm install
-    Lancer l'application en local
     ```
+3. **Lancer l'application en local**
     ```Bash
     npm run dev
     ```
     
 Réalisé dans le cadre du BUT Informatique Cours : Développement Web - Thomas Louvet
+

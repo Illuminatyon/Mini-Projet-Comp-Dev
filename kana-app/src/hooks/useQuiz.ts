@@ -3,6 +3,7 @@ import type {Kana} from '../data/kana';
 
 function useQuiz(kanaData: Kana[]) {
     const shuffledKana = useMemo(() => {
+        // eslint-disable-next-line react-hooks/purity
         return [...kanaData].sort(() => Math.random() - 0.5);
     }, [kanaData]);
     const [index, setIndex] = useState(0);

@@ -5,17 +5,18 @@ function useLocalStorage<T>(key: string, initialValue: T) {
         try {
             const item = window.localStorage.getItem(key);
             return item ? JSON.parse(item) : initialValue;
-        } catch {
+        } catch (error) {
             return initialValue;
         }
     });
 
-    const setValue = (value: T) => {
-        setStoredValue(value);
+    const setValue = (value: T | ((val: T) => T)) => {
         try {
-            window.localStorage.setItem(key, JSON.stringify(value));
-        } catch {
-            console.warn(`useLocalStorage: impossible d'écrire la clé "${key}"`);
+            const valueToStore = value instanceof Function ? value(storedValue) : value;
+            setStoredValue(valueToStore);
+            window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        } catch (error) {
+            console.error(error);
         }
     };
 

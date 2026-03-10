@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useQuiz from '../hooks/useQuiz';
+import {useQuiz} from '../hooks/useQuiz';
 import useLocalStorage from '../hooks/useLocalStorage';
 import './QuizMode.css';
 
@@ -30,7 +30,7 @@ function QuizMode({ script, quiz }: QuizModeProps) {
         if (isFinished) {
             setHistory(prev => [score, ...prev].slice(0, 5));
         }
-    }, [isFinished]);
+    }, [isFinished, score, setHistory]);
 
     const handleCheck = () => {
         const isCorrect = answer.toLowerCase().trim() === currentKana.romanji.toLowerCase();

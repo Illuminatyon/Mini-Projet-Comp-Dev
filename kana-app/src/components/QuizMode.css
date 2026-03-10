@@ -214,6 +214,143 @@
 }
 
 /* ─────────────────────────────────────────────
+   SUMMARY SCREEN (écran de fin)
+   ───────────────────────────────────────────── */
+.summary-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+}
+
+.summary-title::after {
+    content: '終';
+    display: block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.75rem;
+    color: var(--red);
+    opacity: 0.5;
+    letter-spacing: 0.3em;
+    margin-top: 0.3rem;
+}
+
+/* Stats grid */
+.summary-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1.8rem 0;
+}
+
+.summary-stat {
+    background: var(--paper);
+    border: 1px solid var(--paper-warm);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    text-align: center;
+}
+
+.summary-stat small {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 0.4rem;
+}
+
+.summary-stat strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.summary-stat.highlight strong {
+    color: var(--red);
+}
+
+/* Wrong answers */
+.wrong-answers {
+    text-align: left;
+    margin-bottom: 1.8rem;
+}
+
+.wrong-answers-label {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--error);
+    margin-bottom: 0.6rem;
+}
+
+.wrong-answers-list {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.wrong-tag {
+    background: rgba(192, 57, 43, 0.07);
+    border: 1px solid rgba(192, 57, 43, 0.2);
+    color: var(--error);
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-sm);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.82rem;
+}
+
+/* Session history */
+.session-history {
+    border-top: 1px solid var(--paper-warm);
+    padding-top: 1.2rem;
+    text-align: left;
+}
+
+.session-history-label {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 0.7rem;
+}
+
+.history-dots {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.history-dot {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--paper-warm);
+    border: 1px solid var(--mist-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink);
+    transition: background 0.2s ease;
+}
+
+.history-dot:first-child {
+    background: rgba(192, 57, 43, 0.08);
+    border-color: rgba(192, 57, 43, 0.3);
+    color: var(--red);
+}
+
+/* ─────────────────────────────────────────────
    ANIMATIONS
    ───────────────────────────────────────────── */
 @keyframes kanaPulse {

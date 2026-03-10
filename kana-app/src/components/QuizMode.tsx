@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useQuiz from '../hooks/useQuiz';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import useLocalStorage from '../hooks/useLocalStorage';
 import './QuizMode.css';
 
 interface QuizModeProps {
@@ -8,64 +8,107 @@ interface QuizModeProps {
     quiz: ReturnType<typeof useQuiz>;
 }
 
+const GOAL = 10;
+
 function QuizMode({ script, quiz }: QuizModeProps) {
-    const { currentKana, answer, setAnswer, score, feedback, checkAnswer } = quiz;
-    const [highScore, setHighScore] = useLocalStorage('js-app-highscore', 0);
+    const { currentKana, answer, setAnswer, score, feedback, checkAnswer, reset } = quiz;
+    const [highScore, setHighScore] = useLocalStorage<number>('js-app-highscore', 0);
+    const [history, setHistory] = useLocalStorage<number[]>('js-app-history', []);
+    const [wrongAnswers, setWrongAnswers] = useState<string[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
 
+    const isFinished = score >= GOAL;
     useEffect(() => {
-        inputRef.current?.focus();
-    }, [currentKana]);
+        if (!isFinished) inputRef.current?.focus();
+    }, [currentKana, isFinished]);
 
     useEffect(() => {
         if (score > highScore) setHighScore(score);
     }, [score, highScore, setHighScore]);
 
-    const charToDisplay = script === 'hiragana' ? currentKana.hiragana : currentKana.katakana;
-    const GOAL = 10;
+    useEffect(() => {
+        if (isFinished) {
+            setHistory(prev => [score, ...prev].slice(0, 5));
+        }
+    }, [isFinished]);
 
-    if (score >= GOAL) {
+    const handleCheck = () => {
+        const isCorrect = answer.toLowerCase().trim() === currentKana.romanji.toLowerCase();
+        if (!isCorrect && !feedback) {
+            const char = script === 'hiragana' ? currentKana.hiragana : currentKana.katakana;
+            setWrongAnswers(prev =>
+                Array.from(new Set([...prev, `${char} (${currentKana.romanji})`]))
+            );
+        }
+        checkAnswer();
+    };
+
+    const handleReplay = () => {
+        setWrongAnswers([]);
+        reset();
+    };
+    if (isFinished) {
+        const accuracy = Math.round((GOAL / (GOAL + wrongAnswers.length)) * 100);
         return (
             <section className="quiz-container">
                 <div className="quiz-card">
-                    <div style={{ fontSize: '4rem' }}>🏆</div>
-                    <h2 style={{ fontSize: '2rem', margin: '1rem 0', color: '#6366f1' }}>
-                        Session Terminée !
-                    </h2>
-                    <p style={{ fontSize: '1.2rem', color: '#64748b' }}>
-                        Bravo ! Objectif de <b>{GOAL}</b> bonnes réponses atteint.
-                    </p>
-                    <div style={{
-                        background: '#f1f5f9',
-                        padding: '1.5rem',
-                        borderRadius: '20px',
-                        margin: '2rem 0',
-                        fontWeight: 'bold'
-                    }}>
-                        Record actuel : {highScore} pts
+                    <h2 className="summary-title">Session terminée</h2>
+
+                    <div className="summary-stats">
+                        <div className="summary-stat highlight">
+                            <small>Score</small>
+                            <strong>{score} pts</strong>
+                        </div>
+                        <div className="summary-stat">
+                            <small>Record</small>
+                            <strong>{highScore} pts</strong>
+                        </div>
+                        <div className="summary-stat">
+                            <small>Précision</small>
+                            <strong>{accuracy}%</strong>
+                        </div>
+                        <div className="summary-stat">
+                            <small>Erreurs</small>
+                            <strong>{wrongAnswers.length}</strong>
+                        </div>
                     </div>
-                    <button
-                        className="quiz-submit-btn"
-                        onClick={() => window.location.reload()}
-                    >
-                        Recommencer une partie
+                    {wrongAnswers.length > 0 && (
+                        <div className="wrong-answers">
+                            <span className="wrong-answers-label">À réviser</span>
+                            <div className="wrong-answers-list">
+                                {wrongAnswers.map((w, i) => (
+                                    <span key={i} className="wrong-tag">{w}</span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    <div className="session-history">
+                        <span className="session-history-label">Sessions récentes</span>
+                        <div className="history-dots">
+                            {history.map((s, i) => (
+                                <div key={i} className="history-dot">{s}</div>
+                            ))}
+                        </div>
+                    </div>
+                    <button className="quiz-submit-btn" onClick={handleReplay} style={{ marginTop: '2rem', width: '100%' }}>
+                        <span>Rejouer</span>
                     </button>
                 </div>
             </section>
         );
     }
-
+    const charToDisplay = script === 'hiragana' ? currentKana.hiragana : currentKana.katakana;
     return (
         <section className="quiz-container">
             <div className="stats-bar">
-                <span>Objectif: <b>{score}</b> / {GOAL}</span>
-                <span>Record: {highScore} 🏆</span>
+                <span className="score-current">
+                    Objectif <span>{score} / {GOAL}</span>
+                </span>
+                <span className="high-score">Record : {highScore} 🏆</span>
             </div>
-
             <div className="quiz-card">
                 <h1 className="display-kana">{charToDisplay}</h1>
-
-                <form className="quiz-form" onSubmit={(e) => { e.preventDefault(); checkAnswer(); }}>
+                <form className="quiz-form" onSubmit={(e) => { e.preventDefault(); handleCheck(); }}>
                     <input
                         className="quiz-input"
                         ref={inputRef}
@@ -81,13 +124,13 @@ function QuizMode({ script, quiz }: QuizModeProps) {
                         type="submit"
                         disabled={!!feedback || !answer.trim()}
                     >
-                        Vérifier
+                        <span>Vérifier</span>
                     </button>
                 </form>
                 {feedback && (
-                    <div className={`feedback-msg ${feedback.includes('Correct') ? 'success' : 'error'}`}>
+                    <p className={`feedback-msg ${feedback.includes('Correct') ? 'success' : 'error'}`}>
                         {feedback}
-                    </div>
+                    </p>
                 )}
             </div>
         </section>

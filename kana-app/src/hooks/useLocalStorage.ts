@@ -1,20 +1,25 @@
 import { useState } from 'react';
 
-export function useLocalStorage(key: string, initialValue: number) {
-    const [storedValue, setStoredValue] = useState(() => {
+function useLocalStorage<T>(key: string, initialValue: T) {
+    const [storedValue, setStoredValue] = useState<T>(() => {
         try {
             const item = window.localStorage.getItem(key);
             return item ? JSON.parse(item) : initialValue;
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        } catch (error) {
+        } catch {
             return initialValue;
         }
     });
 
-    const setValue = (value: number) => {
+    const setValue = (value: T) => {
         setStoredValue(value);
-        window.localStorage.setItem(key, JSON.stringify(value));
+        try {
+            window.localStorage.setItem(key, JSON.stringify(value));
+        } catch {
+            console.warn(`useLocalStorage: impossible d'écrire la clé "${key}"`);
+        }
     };
 
     return [storedValue, setValue] as const;
 }
+
+export default useLocalStorage;

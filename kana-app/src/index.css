@@ -1,19 +1,28 @@
-/* src/index.css */
 :root {
-  background-color: #f8fafc;
-  margin: 0;
-  padding: 0;
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --success: #22c55e;
+  --error: #ef4444;
+  --radius: 20px;
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
 }
 
 body {
   margin: 0;
-  display: block;
-  width: 100%;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
   min-height: 100vh;
 }
 
 #root {
   width: 100%;
-  margin: 0;
-  padding: 0;
 }

@@ -3,7 +3,7 @@ import './App.css';
 import { kanaData } from './data/kana';
 import StudyMode from './components/StudyMode';
 import QuizMode from './components/QuizMode';
-import useQuiz from "./hooks/useQuiz.ts";
+import {useQuiz} from "./hooks/useQuiz.ts";
 
 function App() {
     const [mode, setMode] = useState<'study' | 'quiz'>('study');

@@ -42,11 +42,12 @@ function App() {
                         Katakana
                     </button>
                 </div>
-                {mode === 'study' ? (
+                <div style={{ display: mode === 'study' ? 'block' : 'none' }}>
                     <StudyMode script={script} kanaData={kanaData} />
-                ) : (
+                </div>
+                <div style={{ display: mode === 'quiz' ? 'block' : 'none' }}>
                     <QuizMode script={script} kanaData={kanaData} />
-                )}
+                </div>
             </main>
         </div>
     );

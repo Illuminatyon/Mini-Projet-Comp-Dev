@@ -62,6 +62,9 @@ src/
     ```Bash
     npm run dev
     ```
-    
+
+## **A préciser : Le CSS à été entièrement réalisé par une IA. J'ai fait mes prompts sur l'IA Claude.**
+
 Réalisé dans le cadre du BUT Informatique Cours : Développement Web - Thomas Louvet
+
 

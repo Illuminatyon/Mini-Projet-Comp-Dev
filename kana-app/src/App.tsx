@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import { kanaData } from './data/kana';
 import StudyMode from './components/StudyMode';
 import QuizMode from './components/QuizMode';
+import { useState } from 'react';
 
 function App() {
-    const [mode, setMode] = useState<'study' | 'quiz'>('study');
     const [script, setScript] = useState<'hiragana' | 'katakana'>('hiragana');
 
     return (
@@ -13,18 +13,18 @@ function App() {
             <header>
                 <h1>Apprendre le Japonais</h1>
                 <nav className="main-nav">
-                    <button
-                        className={mode === 'study' ? 'active' : ''}
-                        onClick={() => setMode('study')}
+                    <NavLink
+                        to="/study"
+                        className={({ isActive }) => isActive ? 'active' : ''}
                     >
                         Mode Étude
-                    </button>
-                    <button
-                        className={mode === 'quiz' ? 'active' : ''}
-                        onClick={() => setMode('quiz')}
+                    </NavLink>
+                    <NavLink
+                        to="/quiz"
+                        className={({ isActive }) => isActive ? 'active' : ''}
                     >
                         Mode Quiz
-                    </button>
+                    </NavLink>
                 </nav>
             </header>
             <main>
@@ -42,12 +42,11 @@ function App() {
                         Katakana
                     </button>
                 </div>
-                <div style={{ display: mode === 'study' ? 'block' : 'none' }}>
-                    <StudyMode script={script} kanaData={kanaData} />
-                </div>
-                <div style={{ display: mode === 'quiz' ? 'block' : 'none' }}>
-                    <QuizMode script={script} kanaData={kanaData} />
-                </div>
+                <Routes>
+                    <Route path="/" element={<Navigate to="/study" replace />} />
+                    <Route path="/study" element={<StudyMode script={script} kanaData={kanaData}/>} />
+                    <Route path="/quiz" element={<QuizMode script={script} kanaData={kanaData} />} />
+                </Routes>
             </main>
         </div>
     );

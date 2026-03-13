@@ -23,8 +23,7 @@ function QuizMode({ script, kanaData }: QuizModeProps) {
     const [quizMode, setQuizMode] = useState<QuizModeType>('normal');
     const [selectedRows, setSelectedRows] = useState<string[]>(ALL_ROWS.map(r => r.id));
     const [showSettings, setShowSettings] = useState(false);
-    const { currentKana, answer, setAnswer, score, feedback, checkAnswer, reset, choices } =
-        useQuiz(kanaData, { script, quizMode, selectedRows });
+    const { currentKana, answer, setAnswer, score, feedback, checkAnswer, reset, choices } = useQuiz(kanaData, { script, quizMode, selectedRows });
     const [highScore, setHighScore] = useLocalStorage<number>('js-app-highscore', 0);
     const [history, setHistory] = useLocalStorage<number[]>('js-app-history', []);
     const [wrongAnswers, setWrongAnswers] = useState<string[]>([]);
@@ -41,7 +40,7 @@ function QuizMode({ script, kanaData }: QuizModeProps) {
         if (isFinished) {
             setHistory(prev => [score, ...prev].slice(0, 5));
         }
-    }, [isFinished]);
+    }, [isFinished, score]);
     const handleCheck = (providedAnswer?: string) => {
         const ans = providedAnswer ?? answer;
         if (!ans.trim() || feedback) return;

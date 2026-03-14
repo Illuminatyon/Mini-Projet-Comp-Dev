@@ -63,7 +63,8 @@ src/
     npm run dev
     ```
 
-## **A préciser : Le CSS à été entièrement réalisé par une IA. J'ai fait mes prompts sur l'IA Claude.**
+## **A préciser : Le CSS à été entièrement réalisé par une IA. J'ai fait mes prompts sur l'IA Claude.
+La réalisation du projet à été faite par moi-même, et toutes les fois où je ne comprennais pas quelque chose je demandais à l'IA, tout en essayant de comprendre ce qu'elle faisait, et en essayant de faire des choses en parallèle.**
 
 Réalisé dans le cadre du BUT Informatique Cours : Développement Web - Thomas Louvet
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { useQuiz, type QuizMode as QuizModeType } from '../hooks/useQuiz';
-import useLocalStorage from '../hooks/useLocalStorage';
-import type { Kana } from '../data/kana';
+import { useQuiz, type QuizMode as QuizModeType } from '../../hooks/useQuiz.ts';
+import useLocalStorage from '../../hooks/useLocalStorage.ts';
+import type { Kana } from '../../data/kana.ts';
 import './QuizMode.css';
 
 interface QuizModeProps {

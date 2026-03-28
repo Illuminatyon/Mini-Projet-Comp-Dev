@@ -1,5 +1,5 @@
-import type { Kana } from '../data/kana';
-import CharacterGrid from './CharacterGrid';
+import type { Kana } from '../../data/kana.ts';
+import CharacterGrid from '../CharacterGrid.tsx';
 
 interface StudyModeProps {
     script: 'hiragana' | 'katakana';
